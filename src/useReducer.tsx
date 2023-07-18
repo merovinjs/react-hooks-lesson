@@ -6,9 +6,9 @@ const UseReducer = () => {
 
   return (
     <div>
-      <h1 style={{ backgroundColor: state.backGroundColor }}>hello reducer</h1>
-      <button onClick={() => dispatch("black")}>black</button>
-      <button onClick={() => dispatch("red")}>red</button>
+      <h1 style={{ color: state.backGroundColor }}>hello reducer</h1>
+      <button onClick={() => dispatch({ type: "black" })}>black</button>
+      <button onClick={() => dispatch({ type: "red" })}>red</button>
     </div>
   );
 };

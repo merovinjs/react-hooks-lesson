@@ -11,8 +11,8 @@ const UseEffect = () => {
   ilişkilendirilmeyen her fonksiyon tekrar render edilir
   buda performans kaybına yol açar
   örneğin counter tıklandığında input değişkeni render edilmez ancak
-  bir olaya bağlanmayan(event handler) bir fonksiyon tekrar render edilir
-  bu componentte console.log("re-render"); ifadesi her input veya counterdeğiştiğinde her zaman render edilecektir
+  bir olaya (event handler) bağlanmayan bir fonksiyon tekrar render edilir
+  bu componentte console.log("re-render"); ifadesi her input veya counter değiştiğinde her zaman render edilecektir
   */
   }
   console.log("re-render");
