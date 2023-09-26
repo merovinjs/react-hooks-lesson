@@ -1,6 +1,6 @@
 import { useReducer } from "react";
-import { colorReducer } from "./reducers/colorReducer";
-import { counterReducer } from "./reducers/counterReducer";
+import { colorReducer } from "../reducers/colorReducer";
+import { counterReducer } from "../reducers/counterReducer";
 const UseReducer = () => {
   const initialvalue = { age: 0 };
   const [state, dispatch] = useReducer(colorReducer, "");

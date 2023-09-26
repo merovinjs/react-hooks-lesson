@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useState, useReducer } from "react";
-import { colorReducer } from "./reducers/colorReducer";
+import { colorReducer } from "../reducers/colorReducer";
 const UseEffect = () => {
   const [input, setInput] = useState("input");
   const [timeCounter, setTimeCounter] = useState(0);

@@ -1,15 +1,9 @@
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import UseState from "./useState.tsx";
-import UseEffect from "./useEffect.tsx";
-import UseReducer from "./useReducer.tsx";
-import UseRef from "./useRef.tsx";
+import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <>
-    <UseState />
-    <UseEffect />
-    <UseReducer />
-    <UseRef />
+    <App />
   </>
 );
