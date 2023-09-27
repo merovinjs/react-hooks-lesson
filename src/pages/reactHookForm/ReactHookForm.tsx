@@ -5,10 +5,29 @@ type FormValues = {
   username: string;
   email: string;
   channel: string;
+  social: {
+    twitter: string;
+    facebook: string;
+  };
 };
 
 const ReactHookForm = () => {
-  const form = useForm<FormValues>();
+  const form = useForm<FormValues>({
+    defaultValues: async () => {
+      const req = await fetch("https://jsonplaceholder.typicode.com/users/1");
+      const res = await req.json();
+      console.log({ res });
+      return {
+        username: "batman",
+        email: res.email,
+        channel: "dasd",
+        social: {
+          twitter: "",
+          facebook: "",
+        },
+      };
+    },
+  });
   const { register, control, handleSubmit, formState } = form;
   const { errors } = formState;
 
@@ -72,6 +91,14 @@ const ReactHookForm = () => {
             })}
           />
           <p>{errors.channel?.message}</p>
+        </div>
+        <div className="form-control">
+          <label htmlFor="twitter">Twitter</label>
+          <input type="text" id="twitter" {...register("social.twitter")} />
+        </div>
+        <div className="form-control">
+          <label htmlFor="facebook">Facebook</label>
+          <input type="text" id="facebook" {...register("social.facebook")} />
         </div>
         <button>Submit</button>
       </form>
