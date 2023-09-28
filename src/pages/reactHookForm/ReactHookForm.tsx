@@ -130,7 +130,7 @@ const ReactHookForm = () => {
             {...register("phoneNumbers.1")}
           />
         </div>
-        <div>
+        <div className="form-control">
           <label>List of phone numbers</label>
           {fields.map((field, index) => {
             return (
