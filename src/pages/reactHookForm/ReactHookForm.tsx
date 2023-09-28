@@ -1,4 +1,4 @@
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import "./Form.css";
 type FormValues = {
@@ -9,6 +9,12 @@ type FormValues = {
     twitter: string;
     facebook: string;
   };
+  phoneNumbers: string[];
+  phNumber: {
+    number: string;
+  }[];
+  age: number;
+  dot: Date;
 };
 
 const ReactHookForm = () => {
@@ -25,11 +31,19 @@ const ReactHookForm = () => {
           twitter: "",
           facebook: "",
         },
+        phoneNumbers: ["", ""],
+        phNumber: [{ number: "" }],
+        age: 0,
+        dot: new Date(),
       };
     },
   });
   const { register, control, handleSubmit, formState } = form;
   const { errors } = formState;
+  const { fields, append, remove } = useFieldArray({
+    name: "phNumber",
+    control,
+  });
 
   const onSubmiting = (data: FormValues) => {
     console.log("form submitted", data);
@@ -99,6 +113,70 @@ const ReactHookForm = () => {
         <div className="form-control">
           <label htmlFor="facebook">Facebook</label>
           <input type="text" id="facebook" {...register("social.facebook")} />
+        </div>
+        <div className="form-control">
+          <label htmlFor="phoneNumbers">primary phone number</label>
+          <input
+            type="text"
+            id="phonenumbers"
+            {...register("phoneNumbers.0")}
+          />
+        </div>
+        <div className="form-control">
+          <label htmlFor="phoneNumbers">secondary phone number</label>
+          <input
+            type="text"
+            id="phoneNumbers"
+            {...register("phoneNumbers.1")}
+          />
+        </div>
+        <div>
+          <label>List of phone numbers</label>
+          {fields.map((field, index) => {
+            return (
+              <div className="form-control" key={field.id}>
+                <input type="text" {...register(`phNumber.${index}.number`)} />
+                {index > 0 && (
+                  <button type="button" onClick={() => remove(index)}>
+                    remove
+                  </button>
+                )}
+              </div>
+            );
+          })}
+          <button type="button" onClick={() => append({ number: "" })}>
+            Addnumber
+          </button>
+        </div>
+        <div className="form-control">
+          <label htmlFor="age">age</label>
+          <input
+            type="number"
+            id="age"
+            {...register("age", {
+              valueAsNumber: true,
+              required: {
+                value: true,
+                message: "age required",
+              },
+            })}
+          />
+          <p>{errors.username?.message}</p>
+        </div>
+        <div className="form-control">
+          <label htmlFor="dot">age</label>
+          <input
+            type="date"
+            id="dot"
+            {...register("dot", {
+              valueAsDate: true,
+              required: {
+                value: true,
+                message: "dot required",
+              },
+            })}
+          />
+          <p>{errors.dot?.message}</p>
         </div>
         <button>Submit</button>
       </form>
