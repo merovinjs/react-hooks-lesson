@@ -8,12 +8,17 @@ const UseReducer = () => {
     counterReducer,
     initialvalue
   );
+  const handleBlack = () => {
+    // bu şekilde ayrı olarak yazmak yani oncilk olan yerede çağırmadan yazmak re-renderın önnüe geçer
+    //red oluşturan dispatch fonsiyonun içnde yazılmıştır
+    dispatch("black");
+  };
 
   return (
     <div>
       <h1 style={{ color: state.backgroundColor }}>hello reducer</h1>
-      <button onClick={() => dispatch({ type: "black" })}>black</button>
-      <button onClick={() => dispatch({ type: "red" })}>red</button>
+      <button onClick={handleBlack}>black</button>
+      <button onClick={() => dispatch("red")}>red</button>
       <p>Hello! You are {counterstate.age}</p>
       <button onClick={() => counterdispatch({ type: "INCREMENT" })}>
         artır

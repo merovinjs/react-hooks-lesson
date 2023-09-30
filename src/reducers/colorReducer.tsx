@@ -1,5 +1,5 @@
 export const colorReducer = (state: any, action: any) => {
-  switch (action.type) {
+  switch (action) {
     case "black":
       return { backgroundColor: "#000" };
     case "red":

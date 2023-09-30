@@ -46,9 +46,7 @@ const UseEffect = () => {
   return (
     <div>
       <h1 style={{ backgroundColor: state.backgroundColor }}>UseEffect</h1>
-      <button onClick={() => dispatch({ type: "turner" })}>
-        ChangeReducer
-      </button>
+      <button onClick={() => dispatch("turner")}>ChangeReducer</button>
       <div>{input}</div>
       <div>{timeCounter}</div>
       <br />
