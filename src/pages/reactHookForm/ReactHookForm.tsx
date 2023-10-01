@@ -1,6 +1,8 @@
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, FieldErrors } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import "./Form.css";
+import { useEffect } from "react";
+let renderedCount = 0;
 type FormValues = {
   username: string;
   email: string;
@@ -38,24 +40,63 @@ const ReactHookForm = () => {
       };
     },
   });
-  const { register, control, handleSubmit, formState } = form;
-  const { errors } = formState;
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState,
+    watch,
+    getValues,
+    setValue,
+  } = form;
+  const { errors, isDirty, isValid, touchedFields, dirtyFields } = formState;
+  console.log({ touchedFields, dirtyFields });
   const { fields, append, remove } = useFieldArray({
     name: "phNumber",
     control,
   });
 
+  //watch form ile verilen değerler ekranda izlenir.eğer "username gibi değer girilmez ise komple form değerleri izlenir"
+  //useEffect hook içine alınrak her değer girildiğin re-render olması engellenir
+  let watchusername = watch("username");
+
+  useEffect(() => {
+    const subscription = watch(() => {});
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [watch]);
+
   const onSubmiting = (data: FormValues) => {
     console.log("form submitted", data);
   };
-
+  const onErrors = (errors: FieldErrors<FormValues>) => {
+    console.log("Form error", errors);
+  };
+  const handleGetValues = () => {
+    console.log("handlegetvalues", getValues());
+  };
+  const handleSetValues = () => {
+    console.log(
+      "handlesetvalues",
+      setValue("username", "", {
+        shouldValidate: true,
+        shouldDirty: true,
+        shouldTouch: true,
+      })
+    );
+  };
+  renderedCount++;
   return (
     <div>
       <form
-        onSubmit={handleSubmit(onSubmiting)}
+        onSubmit={handleSubmit(onSubmiting, onErrors)}
         noValidate
         className="formContainer"
       >
+        <h1>{`kaç defa render edlidi ${renderedCount}`}</h1>
+        <h2>{`useEfect içinde re-render engeller ${watch("username")}`}</h2>
+        <h2>{`useEffet içinde yazılmadığı için re-render olmadı ${watchusername}`}</h2>
         <div className="form-control">
           <label htmlFor="username">username</label>
           <input
@@ -108,7 +149,12 @@ const ReactHookForm = () => {
         </div>
         <div className="form-control">
           <label htmlFor="twitter">Twitter</label>
-          <input type="text" id="twitter" {...register("social.twitter")} />
+          <input
+            type="text"
+            id="twitter"
+            disabled={watch("channel") === ""}
+            {...register("social.twitter")}
+          />
         </div>
         <div className="form-control">
           <label htmlFor="facebook">Facebook</label>
@@ -178,7 +224,13 @@ const ReactHookForm = () => {
           />
           <p>{errors.dot?.message}</p>
         </div>
-        <button>Submit</button>
+        <button disabled={!isDirty || !isValid}>Submit</button>
+        <button type="button" onClick={handleGetValues}>
+          Getvalues
+        </button>
+        <button type="button" onClick={handleSetValues}>
+          Setvalues
+        </button>
       </form>
       <DevTool control={control} />
     </div>
