@@ -19,16 +19,16 @@ type FormValues = {
   dot: Date;
 };
 
-const ReactHookForm = () => {
+function ReactHookForm() {
   const form = useForm<FormValues>({
     defaultValues: async () => {
       const req = await fetch("https://jsonplaceholder.typicode.com/users/1");
       const res = await req.json();
-      console.log({ res });
+
       return {
         username: "batman",
         email: res.email,
-        channel: "dasd",
+        channel: "",
         social: {
           twitter: "",
           facebook: "",
@@ -39,6 +39,7 @@ const ReactHookForm = () => {
         dot: new Date(),
       };
     },
+    mode: "all",
   });
   const {
     register,
@@ -48,16 +49,29 @@ const ReactHookForm = () => {
     watch,
     getValues,
     setValue,
+    reset,
   } = form;
-  const { errors, isDirty, isValid, touchedFields, dirtyFields } = formState;
-  console.log({ touchedFields, dirtyFields });
+  const {
+    errors,
+    isDirty,
+    isValid,
+    touchedFields,
+    dirtyFields,
+    isSubmitSuccessful,
+    isSubmitting,
+    isSubmitted,
+  } = formState;
+  // console.log({ isSubmitted, isSubmitting });
   const { fields, append, remove } = useFieldArray({
     name: "phNumber",
     control,
   });
-
+  //is Submitingi
+  //isSubmiting,isSubmited formu submit tuşuna bastığın anda submiting true oluyor buda formun başarılı bir şekilde gönderilirken true olması anlamına geliyor eğer false a düşerse from gönderildi demek oluyor ,issubmited da form gönderilene kadar false göserildikten sonra true oluyor
   //watch form ile verilen değerler ekranda izlenir.eğer "username gibi değer girilmez ise komple form değerleri izlenir"
   //useEffect hook içine alınrak her değer girildiğin re-render olması engellenir
+  // isSubmit ile isSubmitSuccesfuly arasında fark vardır.
+  // isSubmitform hatalı bile olsa tıklandığında true döner ama isSubmitSuccesfully form doğru bir şekilde database yüklendiğinde döner
   let watchusername = watch("username");
 
   useEffect(() => {
@@ -66,6 +80,11 @@ const ReactHookForm = () => {
       subscription.unsubscribe();
     };
   }, [watch]);
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   const onSubmiting = (data: FormValues) => {
     console.log("form submitted", data);
@@ -86,6 +105,7 @@ const ReactHookForm = () => {
       })
     );
   };
+
   renderedCount++;
   return (
     <div>
@@ -121,12 +141,21 @@ const ReactHookForm = () => {
                 value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
                 message: "Invalid email format",
               },
+
               validate: {
                 notBlacklist: (fieldvalue) => {
                   return (
                     !fieldvalue.endsWith("baddomain.com") ||
                     "This domain is nor supported"
                   );
+                },
+                //kullanıcı databasede varsa döner
+                emailAvalible: async (fieldvalue) => {
+                  const response = await fetch(
+                    `https://jsonplaceholder.typicode.com/users?email=${fieldvalue}`
+                  );
+                  const data = await response.json();
+                  return data.length === 0 || "This email is not avalible";
                 },
               },
             })}
@@ -224,7 +253,7 @@ const ReactHookForm = () => {
           />
           <p>{errors.dot?.message}</p>
         </div>
-        <button disabled={!isDirty || !isValid}>Submit</button>
+        <button>Submit</button>
         <button type="button" onClick={handleGetValues}>
           Getvalues
         </button>
@@ -235,6 +264,6 @@ const ReactHookForm = () => {
       <DevTool control={control} />
     </div>
   );
-};
+}
 
 export default ReactHookForm;
