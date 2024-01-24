@@ -7,6 +7,9 @@ const ExercisesHomePage = () => {
       <a style={{ marginBottom: "15px", fontSize: "20px" }} href="/exercise/otpLogin">
         Opt Fonsiyon"Tek kullanımlık şifre ile giriş"
       </a>
+      <a style={{ marginBottom: "15px", fontSize: "20px" }} href="/exercise/mineswappergame">
+        mayın tarlası oyunu
+      </a>
     </div>
   );
 };

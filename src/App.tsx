@@ -5,6 +5,7 @@ import Home from "./pages/home/Home";
 import ExercisesHomePage from "./pages/exercise/ExercisesHomePage";
 import { Exercise1 } from "./pages/exercise/Exercise1";
 import OtpLogin from "./pages/exercise/OTPlogin/OtpLogin";
+import MineSwapperGame from "./pages/exercise/MineSwapperGame/MineSwapperGame";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/exercises" element={<ExercisesHomePage />} />
           <Route path="/exercise/mapping" element={<Exercise1 />} />
           <Route path="/exercise/otpLogin" element={<OtpLogin />} />
+          <Route path="/exercise/mineswappergame" element={<MineSwapperGame />} />
         </Routes>
       </Router>
     </>
