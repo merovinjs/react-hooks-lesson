@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Hooks from "./pages/hooks/Hooks";
-import ReactHookForm from "./pages/reactHookForm/ReactHookForm";
-import Home from "./pages/home/Home";
-import ExercisesHomePage from "./pages/exercise/ExercisesHomePage";
-import { Exercise1 } from "./pages/exercise/Exercise1";
-import OtpLogin from "./pages/exercise/OTPlogin/OtpLogin";
-import MineSwapperGame from "./pages/exercise/MineSwapperGame/MineSwapperGame";
+import Hooks from "./pages/hooks/Hooks.js";
+import ReactHookForm from "./pages/reactHookForm/ReactHookForm.js";
+import Home from "./pages/home/Home.js";
+import ExercisesHomePage from "./pages/exercise/ExercisesHomePage.js";
+import { Exercise1 } from "./pages/exercise/Exercise1.js";
+import OtpLogin from "./pages/exercise/OTPlogin/OtpLogin.js";
+import MineSwapperGame from "./pages/exercise/MineSwapperGame/MineSwapperGame.js";
 
 function App() {
   return (
