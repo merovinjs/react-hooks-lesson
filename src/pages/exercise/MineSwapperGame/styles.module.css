@@ -24,3 +24,24 @@
   border: 5px solid;
   border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
 }
+.checked {
+  height: 40px;
+  width: 40px;
+  background-color: black;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.one {
+  content: "1";
+  height: 40px;
+  width: 40px;
+  background-color: aquamarine;
+}
+.two {
+  content: "2";
+  height: 40px;
+  width: 40px;
+  background-color: aquamarine;
+}
