@@ -1,47 +1,8 @@
-.container {
-  width: 500px;
-}
-.grid {
-  height: 400px;
-  width: 400px;
+.center {
   display: flex;
-  background-color: #dcd6bc;
-  margin-left: 50px;
-  margin-top: 20px;
-  border: 10px solid #dcd6bc;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
-}
-.grid div {
-  font-size: 25px;
-  text-align: center;
-  height: 40px;
-  width: 40px;
-  box-sizing: border-box;
-}
-.valid,
-.bomb {
-  border: 5px solid;
-  border-color: #f5f3eb #bab7a9 #bab7a9 #fff9db;
-}
-.checked {
-  height: 40px;
-  width: 40px;
-  background-color: black;
-  color: red;
-  display: flex;
-  justify-content: center;
+  place-content: center center;
   align-items: center;
-}
-.one {
-  content: "1";
-  height: 40px;
-  width: 40px;
-  background-color: aquamarine;
-}
-.two {
-  content: "2";
-  height: 40px;
-  width: 40px;
-  background-color: aquamarine;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
 }
