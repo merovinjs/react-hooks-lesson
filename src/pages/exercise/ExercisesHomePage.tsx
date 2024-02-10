@@ -10,6 +10,9 @@ const ExercisesHomePage = () => {
       <a style={{ marginBottom: "15px", fontSize: "20px" }} href="/exercise/mineswappergame">
         mayın tarlası oyunu
       </a>
+      <a style={{ marginBottom: "15px", fontSize: "20px" }} href="/exercise/acordion">
+        Acordion
+      </a>
     </div>
   );
 };

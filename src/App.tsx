@@ -6,6 +6,7 @@ import ExercisesHomePage from "./pages/exercise/ExercisesHomePage.js";
 import { Exercise1 } from "./pages/exercise/Exercise1.js";
 import OtpLogin from "./pages/exercise/OTPlogin/OtpLogin.js";
 import MineSwapperGame from "./pages/exercise/MineSwapperGame/MineSwapperGame.js";
+import Acordion from "./pages/exercise/Acordion/Acordion.js";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/exercise/mapping" element={<Exercise1 />} />
           <Route path="/exercise/otpLogin" element={<OtpLogin />} />
           <Route path="/exercise/mineswappergame" element={<MineSwapperGame />} />
+          <Route path="/exercise/acordion" element={<Acordion />} />
         </Routes>
       </Router>
     </>
