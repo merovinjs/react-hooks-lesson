@@ -7,6 +7,8 @@ import { Exercise1 } from "./pages/exercise/Exercise1.js";
 import OtpLogin from "./pages/exercise/OTPlogin/OtpLogin.js";
 import MineSwapperGame from "./pages/exercise/MineSwapperGame/MineSwapperGame.js";
 import Acordion from "./pages/exercise/Acordion/Acordion.js";
+import FormStapper from "./pages/exercise/FormStapper/FormStapper.js";
+import Counter from "./pages/exercise/ReduxToolkit/ReduxToolkit.js";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/exercise/otpLogin" element={<OtpLogin />} />
           <Route path="/exercise/mineswappergame" element={<MineSwapperGame />} />
           <Route path="/exercise/acordion" element={<Acordion />} />
+          <Route path="/exercise/formstapper" element={<FormStapper />} />
+          <Route path="/exercise/reduxtoolkit" element={<Counter />} />
         </Routes>
       </Router>
     </>

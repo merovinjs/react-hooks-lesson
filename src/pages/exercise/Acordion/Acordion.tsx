@@ -1,35 +1,3 @@
-// import { useState } from "react";
-// import { acordionData } from "./data";
-// import { AcordionDataType } from "../../../types/exerciseType";
-// import styles from "./styles.module.css";
-// const Acordion = () => {
-//   const [selected, setSelected] = useState<number | null>(null);
-
-//   function handleClick(getCurrentId: number) {
-//     setSelected(getCurrentId === selected ? null : getCurrentId);
-//   }
-
-//   return (
-//     <div className={styles.wrapper}>
-//       <div className={styles.acordContainer}>
-//         {acordionData.map((singleData: AcordionDataType) => (
-//           <div key={singleData.id}>
-//             <h2>
-//               {singleData.title}
-//               <button onClick={() => handleClick(singleData.id)}>
-//                 <span>+-</span>
-//               </button>
-//             </h2>
-//             {selected === singleData.id ? <p>{singleData.description}</p> : ""}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Acordion;
-
 import { acordionData } from "./data";
 import { AcordionDataType } from "../../../types/exerciseType";
 import styles from "./styles.module.css";
@@ -46,11 +14,11 @@ const Acordion = () => {
   const handleMultiSelection = (id: number) => {
     let allseleceted: any = [...multiple];
 
-    const findIndeofCurrentID = allseleceted.indexOf(id);
+    const findIndexofCurrentID = allseleceted.indexOf(id);
 
-    if (findIndeofCurrentID === -1) {
+    if (findIndexofCurrentID === -1) {
       allseleceted.push(id);
-    } else allseleceted.splice(findIndeofCurrentID, 1);
+    } else allseleceted.splice(findIndexofCurrentID, 1);
     setMultiple(allseleceted);
   };
 

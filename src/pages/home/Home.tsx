@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
       <h1>Home</h1>
       <div>
-        <a href="/hooks">React Hooks Çalışmaları</a>
+        <Link to="/hooks">React Hooks Çalışmaları</Link>
         <br />
-        <a href="/redux">React Hook Form Çalışmaları</a>
+        <Link to="/redux">React Hook Form Çalışmaları</Link>
         <br />
-        <a href="/exercises">React Fonsiyonel Çalışmalar</a>
+        <Link to="/exercises">React Fonsiyonel Çalışmalar</Link>
       </div>
     </div>
   );
